@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Route, withRouter } from 'react-router-dom';
+import { Route, withRouter, Switch } from 'react-router-dom';
 import AdicionarAtividadePage from './pages/AdicionarAtividade.page';
 import TodoListPage from './pages/todoList.page';
 
@@ -76,29 +76,30 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <br />
+        <Switch>
+          <Route
+            exact
+            path='/add'
+            render={ (history) => (
+              <AdicionarAtividadePage
+                addAtividade={this.addAtividade}
+                />
 
-        <Route
-          exact
-          path='/add'
-          render={ (history) => (
-            <AdicionarAtividadePage
-              addAtividade={this.addAtividade}
-              />
+            )} />
 
-          )} />
-
-        <Route
-          exact
-          path='/'
-          render={(history) => (
-            <div>
-              <button onClick={() => this.props.history.push('/add')}>Adicionar nova atividade</button>
-              <TodoListPage
-                todo={todo}
-                completeTodo={this.completeTodo}/>
-            </div>
-          )}
-        />
+          <Route
+            exact
+            path='/'
+            render={(history) => (
+              <div>
+                <button onClick={() => this.props.history.push('/add')}>Adicionar nova atividade</button>
+                <TodoListPage
+                  todo={todo}
+                  completeTodo={this.completeTodo}/>
+              </div>
+            )}
+          />
+        </Switch>
 
 
 
