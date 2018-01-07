@@ -1,0 +1,29 @@
+version: '2'
+services: 
+  agenda-api:
+    build:
+      context: ./agenda-backend-api
+      dockerfile: ./docker/Dockerfile
+    image: workshop/agenda-backend-api
+    ports:
+      - "8080:8080"
+      - "8085:8085"
+      - "5005:5005"
+      - "1299:1299"
+      - "1521:1521"
+    environment:
+      - ADDITIONAL_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,address=5005,suspend=n
+    links:
+      - DB
+    depends_on:
+      - DB
+  DB:
+    image: mysql
+    environment:
+      - MYSQL_DATABASE=agenda
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./volume_mysql:/var/lib/mysql
