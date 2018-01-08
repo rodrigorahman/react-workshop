@@ -909,27 +909,176 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="229" parent="2" name="usuarios">
+    <table id="229" parent="2" name="agenda">
       <Engine>InnoDB</Engine>
     </table>
-    <column id="230" parent="229" name="cd_usuario">
+    <table id="230" parent="2" name="agenda_compromisso">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="231" parent="2" name="schema_version">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="232" parent="2" name="usuarios">
+      <Engine>InnoDB</Engine>
+    </table>
+    <column id="233" parent="229" name="cd_agenda">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="231" parent="229" name="nm_usuario">
+    <column id="234" parent="229" name="nm_agenda">
       <Position>2</Position>
       <DataType>varchar(200)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="232" parent="229" name="nm_senha">
+    <column id="235" parent="229" name="cd_usuario">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="236" parent="229" name="cd_usuario">
+      <ColNames>cd_usuario</ColNames>
+    </index>
+    <key id="237" parent="229" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>cd_agenda</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="238" parent="229" name="agenda_ibfk_1">
+      <ColNames>cd_usuario</ColNames>
+      <RefSchemaName>agenda</RefSchemaName>
+      <RefTableName>usuarios</RefTableName>
+      <RefColNames>cd_usuario</RefColNames>
+    </foreign-key>
+    <column id="239" parent="230" name="cd_agenda">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="240" parent="230" name="dt_agenda">
+      <Position>2</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="241" parent="230" name="ds_compromisso">
+      <Position>3</Position>
+      <DataType>text|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="242" parent="230" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>cd_agenda
+dt_agenda</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="243" parent="230" name="agenda_compromisso_ibfk_1">
+      <ColNames>cd_agenda</ColNames>
+      <RefSchemaName>agenda</RefSchemaName>
+      <RefTableName>agenda</RefTableName>
+      <RefColNames>cd_agenda</RefColNames>
+    </foreign-key>
+    <column id="244" parent="231" name="version_rank">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="245" parent="231" name="installed_rank">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="246" parent="231" name="version">
+      <Position>3</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="247" parent="231" name="description">
+      <Position>4</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="248" parent="231" name="type">
+      <Position>5</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="249" parent="231" name="script">
+      <Position>6</Position>
+      <DataType>varchar(1000)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="250" parent="231" name="checksum">
+      <Position>7</Position>
+      <DataType>int(11)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="251" parent="231" name="installed_by">
+      <Position>8</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="252" parent="231" name="installed_on">
+      <Position>9</Position>
+      <DataType>timestamp|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="253" parent="231" name="execution_time">
+      <Position>10</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="254" parent="231" name="success">
+      <Position>11</Position>
+      <DataType>tinyint(1)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="255" parent="231" name="schema_version_vr_idx">
+      <ColNames>version_rank</ColNames>
+    </index>
+    <index id="256" parent="231" name="schema_version_ir_idx">
+      <ColNames>installed_rank</ColNames>
+    </index>
+    <index id="257" parent="231" name="schema_version_s_idx">
+      <ColNames>success</ColNames>
+    </index>
+    <key id="258" parent="231" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>version</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="259" parent="232" name="cd_usuario">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="260" parent="232" name="nm_usuario">
+      <Position>2</Position>
+      <DataType>varchar(200)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="261" parent="232" name="nm_senha">
       <Position>3</Position>
       <DataType>varchar(200)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="233" parent="229" name="PRIMARY">
+    <key id="262" parent="232" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>cd_usuario</ColNames>
       <Primary>1</Primary>

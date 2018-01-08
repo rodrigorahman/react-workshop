@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public interface UsuarioService extends CrudRepository<Usuarios, Long>{
+public interface UsuarioService extends CrudRepository<Usuarios, Integer>{
 
     @Query("select U from Usuarios U")
     List<Usuarios> getAll();

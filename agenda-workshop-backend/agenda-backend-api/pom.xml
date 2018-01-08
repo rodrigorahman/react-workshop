@@ -74,6 +74,12 @@
 			<artifactId>jackson-datatype-jdk8</artifactId>
 			<version>2.9.3</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
