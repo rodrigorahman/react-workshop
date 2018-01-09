@@ -20,12 +20,7 @@ public class Agenda implements Serializable {
     @JoinColumn(name = "cd_usuario", nullable = false)
     private Usuarios usuarios;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "agenda_compromisso",
-            joinColumns = @JoinColumn(name = "cd_agenda"),
-            inverseJoinColumns = @JoinColumn(name = "cd_agenda")
-    )
+    @OneToMany(mappedBy = "agenda.pk")
     private List<AgendaCompromisso> compromissos;
 
     public Agenda(String nome, Usuarios usuarios, List<AgendaCompromisso> compromissos) {

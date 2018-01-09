@@ -8,9 +8,8 @@ import java.util.Date;
 @Table(name = "agenda_compromisso")
 public class AgendaCompromisso implements Serializable {
 
-    @Id
-    @Column(name="cd_agenda")
-    private Integer id;
+    @EmbeddedId
+    private AgendaCompromissoPK agenda;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "dt_agenda")
@@ -19,8 +18,8 @@ public class AgendaCompromisso implements Serializable {
     @Column(name = "ds_compromisso", columnDefinition = "TEXT")
     private String compromisso;
 
-    public AgendaCompromisso(Integer id, Date data, String compromisso) {
-        this.id = id;
+    public AgendaCompromisso(AgendaCompromissoPK agenda, Date data, String compromisso) {
+        this.agenda = agenda;
         this.data = data;
         this.compromisso = compromisso;
     }
@@ -28,8 +27,8 @@ public class AgendaCompromisso implements Serializable {
     public AgendaCompromisso() {
     }
 
-    public Integer getId() {
-        return id;
+    public AgendaCompromissoPK getAgenda() {
+        return agenda;
     }
 
     public Date getData() {
@@ -40,3 +39,4 @@ public class AgendaCompromisso implements Serializable {
         return compromisso;
     }
 }
+

@@ -9,9 +9,9 @@ import java.util.List;
 public class AgendaRS implements Serializable{
 
     private String nomeAgenda;
-    private List<AgendaCompromisso> compromissos;
+    private List<AgendaCompromissoRS> compromissos;
 
-    public AgendaRS(@JsonProperty("nomeAgenda") String nomeAgenda, @JsonProperty("compromissos") List<AgendaCompromisso> compromissos) {
+    public AgendaRS(@JsonProperty("nomeAgenda") String nomeAgenda, @JsonProperty("compromissos") List<AgendaCompromissoRS> compromissos) {
         this.nomeAgenda = nomeAgenda;
         this.compromissos = compromissos;
     }
@@ -20,7 +20,7 @@ public class AgendaRS implements Serializable{
         return nomeAgenda;
     }
 
-    public List<AgendaCompromisso> getCompromissos() {
+    public List<AgendaCompromissoRS> getCompromissos() {
         return compromissos;
     }
 }
